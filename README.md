@@ -67,6 +67,26 @@ To install all dependencies, use the following command:
 ```bash
 conda env create -f environment.yml
 ```
+## 📋 Configuration File
+
+The **config.yml** file contains all the configurations for the project, including the file paths and keywords used in the NLP process. This allows for easy updates without modifying the core code.
+
+### Sample config.yml:
+```yaml
+paths:
+  data_folder: '../data'
+  output_file: '../results/temperature_sentences.txt'
+
+keywords:
+  temperature_related: 
+    - "temperature"
+    - "heat"
+    - "cooling"
+    - "thermal"
+    - "overheat"
+    - "overheating"
+    - "coolant"
+    - "hot"
 
 ## ⚡ How to Run
 
@@ -84,11 +104,19 @@ conda env create -f environment.yml
     ```bash
     pip install -r requirements.txt
     ```
-3. **Run the Python script**:
+3. **Run the main script**:
     <!-- Execute the main script to process the text data and visualize the results -->
     ```bash
     python run.py
     ```
+
+4. **Run the Sentence Extraction Script**:
+   ```bash
+   python run/extract_sentences.py
+    ```
+This script reads PDF files from the folder specified in config.yml and extracts sentences related to temperature or any other keywords listed in the configuration file.
+The output will be saved in the file specified in the output_file path in config.yml.
+
 ## 📚 Data Sources
 
 The primary data used in this project is sourced from [**NUREG-0800**](https://www.nrc.gov/reading-rm/doc-collections/nuregs/staff/sr0800/ch5/index.html). Relevant sections include:

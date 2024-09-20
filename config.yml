@@ -1,0 +1,15 @@
+# config.yaml
+paths:
+  data_folder: '../data'
+  output_file: '../results/temperature_sentences.txt'
+
+keywords:
+  temperature_related: 
+    - "temperature"
+    - "heat"
+    - "cooling"
+    - "thermal"
+    - "overheat"
+    - "overheating"
+    - "coolant"
+    - "hot"
