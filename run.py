@@ -70,8 +70,8 @@ import matplotlib.pyplot as plt
 import os
 
 # Ensure the ./result folder exists
-if not os.path.exists('./result'):
-    os.makedirs('./result')
+if not os.path.exists('./results'):
+    os.makedirs('./results')
 
 # Initialize the graph
 G = nx.DiGraph()
