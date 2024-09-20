@@ -1,0 +1,11 @@
+name: Project_12746
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - PyPDF2
+  - pdfplumber
+  - nltk
+  - scikit-learn
+  - networkx
+  - matplotlib
