@@ -1,55 +1,58 @@
-# Inferring-Cause-of-Reactor-Overheat-Issues-Using-NLP
 <!-- 
 README.md for the project: Inferring Causes of Reactor Overheat Issues Using NLP
 GitHub Repository: https://github.com/separk-1/Inferring-Cause-of-Reactor-Overheat-Issues-Using-NLP 
 -->
 
-# Automated Keyword Extraction and Causal Relationship Mapping Framework
+# 🚀 Inferring Cause of Reactor Overheat Issues Using NLP
 
 This project was conducted as part of the **12-746 Fall 2024 Mini 1 class** at **Carnegie Mellon University (CMU)**.
 
-## Overview
+## 🌟 Overview
 
-This project aims to automate the process of **keyword extraction** and **causal relationship mapping** from unstructured text data. The system leverages **Natural Language Processing (NLP)** techniques to analyze and classify text data, identify causal relationships, and provide real-time insights through visual representations such as **knowledge graphs**.
+In nuclear power plants, managing reactor overheating is essential for maintaining **safety**, **reliability**, and **operational efficiency**. Cooling system failures can result in **decay heat accumulation**, leading to catastrophic incidents like core meltdowns or hydrogen explosions, potentially releasing harmful radioactive materials.
 
-### Key Components:
+This project applies **Natural Language Processing (NLP)** techniques to analyze reactor safety documents and extract important insights related to the **causes**, **effects**, and **countermeasures** for **Loss of Coolant Accidents (LOCA)**.
 
-1. **Data Collection & Preprocessing**:
-   - Unstructured text data is collected and tokenized for further processing.
+### 🎯 Project Objectives
 
-2. **Keyword Extraction and Classification**:
-   - Techniques such as **TF-IDF** and **n-grams** are used to extract and classify relevant keywords.
+- Automatically extract keywords related to LOCA and reactor overheating from unstructured text data.
+- Map and visualize **causal relationships** between extracted keywords (e.g., coolant failure and temperature rise).
+- Provide real-time, actionable insights through a visually interactive framework.
 
-3. **Causal Relationship Mapping**:
-   - Dependency parsing is applied to identify causal relationships between classified keywords.
+---
 
-4. **Evaluation**:
-   - The extracted keywords and relationships are evaluated and refined by comparing them with expert-verified data.
-
-5. **Visualization**:
-   - The refined causal relationships are visualized using **knowledge graphs**, providing clear and actionable insights.
-
-6. **Automation and Usability**:
-   - The system is designed to handle new unstructured data automatically, enabling real-time updates and insights.
-
-## System Flow
+## 🛠️ System Architecture
 
 ![System Architecture](image/framework.png)
 
-The above diagram illustrates the flow of the system, beginning from **data collection** to **visualization**, and shows how **automation** ensures real-time insights.
+The above diagram illustrates the **end-to-end process** of this framework, from **data collection** to **visualization**. It also showcases how **automation** drives real-time updates and continuous insights.
 
-### Detailed Flow:
+### 🔑 Key Components
 
-- **Data Collection**: Unstructured text is collected and tokenized.
-- **Keyword Extraction & Classification**: TF-IDF and n-grams help extract and classify keywords.
-- **Causal Relationship Mapping**: Dependency parsing helps create causal relationships.
-- **Evaluation**: Refined keywords and relationships are compared with expert data.
-- **Visualization**: Knowledge graphs visually represent the data for usability.
-- **Automation**: New data is processed in real-time, offering continuous insights.
+1. **Data Collection & Preprocessing**:
+   - Collect unstructured text data from safety regulatory documents such as **NUREG-0800**.
+   - Preprocess data using tokenization, stop-word removal, and stemming.
 
-## Requirements
+2. **Keyword Extraction & Classification**:
+   - Implement **TF-IDF** and **n-grams** for keyword extraction.
+   - Classify keywords into **cause**, **effect**, and **countermeasure** categories.
 
-To set up the project locally, ensure that the following dependencies are installed:
+3. **Causal Relationship Mapping**:
+   - Use **dependency parsing** to identify cause-effect relationships.
+   - Generate a directed graph to visualize these relationships.
+
+4. **Visualization**:
+   - Employ **matplotlib** and **networkx** to create knowledge graphs.
+   - Represent the relationships between causes, effects, and countermeasures in an intuitive, visual format.
+
+5. **Automation & Usability**:
+   - Design an automated system that continuously updates with new data, providing **real-time insights** for decision-making.
+
+---
+
+## 📋 Requirements
+
+Ensure the following are installed before running the project:
 
 - **Python 3.10+**
 - Required Python libraries:
@@ -59,13 +62,13 @@ To set up the project locally, ensure that the following dependencies are instal
   - `matplotlib`
   - `networkx`
 
-You can install all dependencies with the following command:
+To install all dependencies, use the following command:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## How to Run
+## ⚡ How to Run
 
 <!-- Step-by-step guide for running the project locally -->
 
@@ -81,23 +84,50 @@ pip install -r requirements.txt
     ```bash
     pip install -r requirements.txt
     ```
+3. **Run the Python script**:
+    <!-- Execute the main script to process the text data and visualize the results -->
+    ```bash
+    python run.py
+    ```
+## 📚 Data Sources
 
-3. **Run the Jupyter notebook**:
-   <!-- Open the `.ipynb` file using Jupyter Notebook or VS Code -->
-   - Open the `.ipynb` file with either:
-     - **VS Code** with the Jupyter extension installed, or
-     - **Jupyter Notebook** by running the following command in the terminal:
-       ```bash
-       jupyter notebook
-       ```
+The primary data used in this project is sourced from [**NUREG-0800** (Standard Review Plan)](https://www.nrc.gov/reading-rm/doc-collections/nuregs/staff/sr0800/index.html). Relevant sections include:
 
-4. **Execute the notebook cells**:
-   <!-- Instructions to run the cells in the notebook -->
-   - After opening the notebook, execute each cell sequentially to process the data and visualize the results.
+- **5.2.3** Reactor Coolant Pressure
+- **5.2.4** Reactor Coolant Pressure Boundary Inservice
+- **5.2.5** Reactor Coolant Pressure Boundary Leakage Detection
+- **5.3.2** Pressure-Temperature Limits, Upper-Shelf Energy, and Pressurized Thermal Shock
+- **5.4** Reactor Coolant System Component and Subsystem Design
+- **5.4.6** Reactor Core Isolation Cooling System (BWR)
+- **5.4.12** Reactor Coolant System High Point Vents
 
-5. **For script execution (optional)**:
-   <!-- Instructions for running the Python script, if available -->
-   - If a Python script is provided in the repository, you can run it directly in the terminal:
-     ```bash
-     python script_name.py
-     ```
+These sections provide critical regulatory guidelines for managing reactor coolant systems and ensuring safety.
+
+---
+
+## 🎯 Learning Goals
+
+The project aims to enhance the following skills:
+
+1. **Keyword Extraction**: Mastering NLP techniques to extract critical terms from unstructured text data using **TF-IDF** and **n-grams**.
+2. **Causal Inference**: Learning to infer cause-effect relationships using **dependency parsing** techniques.
+3. **Visualization**: Developing proficiency in representing complex data visually using libraries like **matplotlib** and **networkx**.
+
+---
+
+## 🗂️ Project Deliverables
+
+At the conclusion of the project, the following will be delivered:
+
+1. A **causal relationship ontology** related to LOCA.
+2. An **interactive dashboard** that visualizes the extracted keywords and causal relationships.
+3. A **real-time system** that can continuously process and update unstructured text data from real-world sources.
+
+---
+
+## 📝 Timeline
+
+- **Data Collection** – ✅ Completed
+- **Keyword Extraction & Causal Mapping** – 🚧 In Progress (target date: 09/26)
+- **Visualization & Evaluation** – 🔄 Upcoming (target date: 10/03)
+- **Automation & Reproducibility** – 🔄 Upcoming (target date: 10/10)
