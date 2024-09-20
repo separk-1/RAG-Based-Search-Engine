@@ -1,0 +1,24 @@
+4. NUREG-0313, “Technical Report on Material Selection and Processing Guidelines for
+for Austenitic Stainless Steel,” to satisfy GDC 14 and 31 relative to prevention of
+Report on Material Selection and Processing Guidelines for BWR Coolant Pressure
+Part 50, Appendix A, Criterion 31, “Fracture Prevention of Reactor Coolant
+18. NUREG-0313; Revision 2; “Technical Report on Material Selection and Processing
+document replaced Branch Technical Position MTEB 5-7, “Material Selection and
+Compliance with GDC 33 ensures that specified acceptable fuel design limits are not
+Compliance with GDC 34
+boundary, as defined in Title 10, Section 50.2(v), of the Code of Federal Regulations.
+The staff will review the application with respect to the regulations concerning, (a)
+A. Applicable Regulations, Codes, and Basis Documents.
+A. Applicable Regulations, Codes, and Basis Documents.
+Compliance with GDC 1 and 10 CFR 50.55a provides assurance that the RCPB meets
+Establishing, monitoring, and maintaining
+3. 10 CFR 50.60, “Acceptance Criteria for Fracture Prevention Measures for Lightwater
+Part 50, Appendix A, General Design Criterion 31, “Fracture Prevention of
+Compliance with GDC 30 and the guidance in RG 1.45 ensure that
+Inter-system Leakage Monitoring
+demonstrate compliance with 10 CFR 50.46 unless vent line flow area is restricted to
+Commission regulations:
+Compliance with 10 CFR 50.46a assures that there is a
+have adequate independence, redundancy, and testability and provide sufficient
+Compliance with GDC 19 will provide assurance that control room
+The reviewer of reactor thermal-hydraulic systems examines valve redundancy and

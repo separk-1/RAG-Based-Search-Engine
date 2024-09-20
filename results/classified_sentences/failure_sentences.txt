@@ -1,0 +1,38 @@
+General corrosion and stress
+corrosion cracking induced by impurities in the reactor coolant can cause failures of the
+function is to control corrosion is reviewed by the organization responsible for chemical
+of the corrosion of ferritic low alloy steels and carbon steels in contact with the reactor
+In particular, the propensity for cold cracks or reheat
+cracks to form in areas under the bead and in heat-affected zones (HAZ)
+cause underclad cracking of certain steels.
+and on request it will review corrosion testing data.
+susceptible to stress corrosion cracking than nonsensitized (solution heat
+boundary piping is susceptible to oxygen-assisted stress corrosion cracking.
+D. Austenitic stainless steel is subject to hot cracking (microfissuring) during
+Because cracks formed in this manner are small and difficult to detect
+cracking must be specified.
+such as inhibitors) as it relates to corrosion control and compatibility with RCPB
+susceptibility to underclad cracking should not be weld clad by
+demonstrate that underclad cracking is not induced.
+Laboratory stress corrosion tests and service experience provide the basis for
+failure of the RCPB.
+materials provides assurance that degradation and/or failure of the RCPB resulting from
+of extreme degradation could cause gross failure of the RCPB resulting in substantial
+This reduces the likelihood of degradation and/or failure of
+The controls to avoid stress corrosion cracking in reactor coolant pressure boundary
+system addresses protection against common mode failure of redundant systems.
+to meet the single failure criterion, but it must do so in conjunction with the HPCS, HPCI,
+Controller Malfunctions.”
+Section 5.2.2, “Overpressure Protection Review Responsibilities.”
+temperature overpressure protection systems / cold overpressure mitigation
+material’s lower bound static crack initiation fracture toughness, K , must
+functions include preventing a loss of reactor coolant through leakage or gross failure of
+RCPB material failure and the subsequent effects on reactor core cooling and
+resulting in fuel failure.
+significant degradation or of gross failure of the RCPB that could cause a loss of reactor
+failure of the RCPB and the subsequent loss of core cooling and fission product
+The stress intensity at the crack tip due to thermal loadings
+nonductile or rapidly propagating failure are in conformance with the fracture
+Against Nonductile Failure,” of the ASME Boiling and Pressure Vessel Code.
+and Crack Tip Temperatures for Generating P-T Curves per ASME Section XI -
+instrumentation, vent controls, and power source to establish that a single failure will not

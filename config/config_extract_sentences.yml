@@ -1,7 +1,6 @@
-# config.yaml
 paths:
-  data_folder: '../data'
-  output_file: '../results/temperature_sentences.txt'
+  data_folder: "../data"
+  output_file: "../results/temperature_sentences.txt"
 
 keywords:
   temperature_related: 
@@ -13,3 +12,6 @@ keywords:
     - "overheating"
     - "coolant"
     - "hot"
+
+options:
+  add_timestamp: true

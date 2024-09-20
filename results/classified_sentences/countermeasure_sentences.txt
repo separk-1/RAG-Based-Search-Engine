@@ -1,0 +1,43 @@
+The reactor coolant system safety and relief valves.
+5.4.6 REACTOR CORE ISOLATION COOLING SYSTEM (BWR)
+The reactor core isolation cooling (RCIC) system in a boiling-water reactor (BWR) is a safety
+spray (HPCS) system, the high-pressure coolant injection (HPCI) system, or the HPCF
+with the HPCS (or HPCI) system, the safety and relief valves (SRVs), and the
+complete shutdown of the reactor under conditions requiring its use.
+decay heat and other residual heat from the reactor core following shutdown thus
+The staff concludes that the reactor core isolation cooling system design is acceptable and
+feedwater system isolation and reactor shutdown so that sufficient coolant inventory is
+Isolation”
+• reactor core isolation cooling (RCIC) system
+[ALWR]) / shutdown cooling mode of the reactor water cleanup system
+[BWR] / reactor water cleanup/shutdown cooling
+• RCS pressure relief devices / reactor coolant depressurization systems
+isolation condenser systems, gravity-driven cooling systems, passive containment cooling
+Core Isolation Cooling System,” and 5.4.7, “Residual Heat Removal (RHR)
+emergency core cooling systems, assess the functional aspects of valves within,
+“Emergency Core Cooling System.”
+the pressurizer, including related safety and relief valve capacities, under SRP
+Reactor Core Isolation Cooling System (BWR) /
+BWRs assesses the reactor core isolation cooling system / isolation condenser
+emergency core cooling systems (secondary reviewer), evaluate the ESBWR
+isolation condenser system under SRP Section 6.3, since this system is part of
+the emergency core cooling system.
+Shutdown Cooling Mode of the Reactor Water Cleanup System
+[BWR] / Reactor Water Cleanup/Shutdown Cooling
+Reactor Coolant System Pressure Relief Devices / Reactor Coolant Depressurization
+BWRs reviews setpoints and capacities of RCS safety and relief valves, and low-
+structural integrity and methods of analysis of RCS pressure relief devices /
+programs for RCS pressure relief devices / reactor coolant depressurization
+Class 1 RCS pressure relief devices / reactor coolant depressurization systems
+engineering issues (secondary reviewer), assess RCS pressure relief device /
+for RCS pressure relief devices / reactor coolant depressurization systems under
+ASME Code Class 1 RCS pressure relief devices / reactor coolant
+Establishing, monitoring, and maintaining
+pressure, temperature, flow and pressure relief valve actuation indications, and the
+Inter-system Leakage Monitoring
+1. Safety Injection Systems (High and Low Pressure Core Spray and Coolant Injection
+Reactor Core Isolation Cooling System
+Steam Side of High Pressure Coolant Injection (BWR-4)
+calculated successful initial operation of the emergency core cooling system (ECCS) to
+prevent isolation of the vent system.
+3. 10 CFR 50.46, “Acceptance Criteria for Emergency Core Cooling Systems for Light
