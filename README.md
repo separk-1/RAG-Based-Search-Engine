@@ -91,7 +91,7 @@ pip install -r requirements.txt
     ```
 ## 📚 Data Sources
 
-The primary data used in this project is sourced from [**NUREG-0800** (Standard Review Plan)](https://www.nrc.gov/reading-rm/doc-collections/nuregs/staff/sr0800/index.html). Relevant sections include:
+The primary data used in this project is sourced from [**NUREG-0800**](https://www.nrc.gov/reading-rm/doc-collections/nuregs/staff/sr0800/ch5/index.html). Relevant sections include:
 
 - **5.2.3** Reactor Coolant Pressure
 - **5.2.4** Reactor Coolant Pressure Boundary Inservice
