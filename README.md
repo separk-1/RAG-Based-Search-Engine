@@ -34,7 +34,7 @@ This project aims to automate the process of **keyword extraction** and **causal
 
 ## System Flow
 
-![System Architecture](path-to-image)
+![System Architecture](image/framework.png)
 
 The above diagram illustrates the flow of the system, beginning from **data collection** to **visualization**, and shows how **automation** ensures real-time insights.
 
@@ -63,3 +63,41 @@ You can install all dependencies with the following command:
 
 ```bash
 pip install -r requirements.txt
+```
+
+## How to Run
+
+<!-- Step-by-step guide for running the project locally -->
+
+1. **Clone the repository**:
+   <!-- Clone the project from the GitHub repository using the following command -->
+   ```bash
+   git clone https://github.com/separk-1/Inferring-Cause-of-Reactor-Overheat-Issues-Using-NLP.git
+   cd Inferring-Cause-of-Reactor-Overheat-Issues-Using-NLP
+   ```
+
+2. **Install the required packages**:
+    <!-- Install the dependencies listed in the `requirements.txt` file -->
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+3. **Run the Jupyter notebook**:
+   <!-- Open the `.ipynb` file using Jupyter Notebook or VS Code -->
+   - Open the `.ipynb` file with either:
+     - **VS Code** with the Jupyter extension installed, or
+     - **Jupyter Notebook** by running the following command in the terminal:
+       ```bash
+       jupyter notebook
+       ```
+
+4. **Execute the notebook cells**:
+   <!-- Instructions to run the cells in the notebook -->
+   - After opening the notebook, execute each cell sequentially to process the data and visualize the results.
+
+5. **For script execution (optional)**:
+   <!-- Instructions for running the Python script, if available -->
+   - If a Python script is provided in the repository, you can run it directly in the terminal:
+     ```bash
+     python script_name.py
+     ```
