@@ -9,3 +9,6 @@ dependencies:
   - scikit-learn
   - networkx
   - matplotlib
+  - spacy
+post-build:
+  - python -m spacy download en_core_web_sm
