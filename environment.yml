@@ -1,8 +1,9 @@
-name: Project_12746
+name: proj_12746
 channels:
   - conda-forge
   - defaults
 dependencies:
+  - python=3.10
   - PyPDF2
   - pdfplumber
   - nltk
@@ -11,5 +12,3 @@ dependencies:
   - matplotlib
   - spacy
   - pyyaml
-post-build:
-  - python -m spacy download en_core_web_sm

@@ -14,4 +14,4 @@ keywords:
     - "hot"
 
 options:
-  add_timestamp: true
+  add_timestamp: false

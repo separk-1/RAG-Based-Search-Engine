@@ -48,25 +48,6 @@ The above diagram illustrates the **end-to-end process** of this framework, from
 5. **Automation & Usability**:
    - Design an automated system that continuously updates with new data, providing **real-time insights** for decision-making.
 
----
-
-## 📋 Requirements
-
-Ensure the following are installed before running the project:
-
-- **Python 3.10+**
-- Required Python libraries:
-  - `nltk`
-  - `spacy`
-  - `scikit-learn`
-  - `matplotlib`
-  - `networkx`
-
-To install all dependencies, use the following command:
-
-```bash
-conda env create -f environment.yml
-```
 ## 📋 Configuration File
 
 The **config.yml** file contains all the configurations for the project, including the file paths and keywords used in the NLP process. This allows for easy updates without modifying the core code.
@@ -101,10 +82,11 @@ keywords:
    ```
 
 2. **Install the required packages**:
-    <!-- Install the dependencies listed in the `requirements.txt` file -->
-    ```bash
-    pip install -r requirements.txt
-    ```
+   ```bash
+   conda env create -f environment.yml
+   python -m spacy download en_core_web_sm
+   ```
+
 3. **Run the main script**:
     <!-- Execute the main script to process the text data and visualize the results -->
     ```bash
