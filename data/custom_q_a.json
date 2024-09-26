@@ -1,0 +1,52 @@
+[
+  {
+    "question": "What is the purpose of the reactor coolant pressure boundary (RCPB) leakage detection system?",
+    "answer": "The RCPB leakage detection system is designed to detect and identify the source of reactor coolant leakage to ensure safety."
+  },
+  {
+    "question": "Which general design criteria (GDC) must the reactor coolant pressure boundary leakage detection system meet?",
+    "answer": "The system must meet the requirements of GDC 2 and GDC 30."
+  },
+  {
+    "question": "What is the role of GDC 30 in the context of the RCPB leakage detection system?",
+    "answer": "GDC 30 requires that the system must detect and, to the extent practical, identify the location of reactor coolant leakage to ensure safety and prevent severe loss-of-coolant accidents."
+  },
+  {
+    "question": "What types of phenomena must the reactor coolant pressure boundary leakage detection system be able to withstand, according to GDC 2?",
+    "answer": "The system must be able to withstand natural phenomena such as earthquakes, tornadoes, hurricanes, floods, and tsunamis without losing its capability to perform its safety functions."
+  },
+  {
+    "question": "What is the purpose of the RCPB leakage detection system in microreactors?",
+    "answer": "The purpose is to identify and monitor coolant leakage locations and ensure that appropriate indicators and alarm systems are in place."
+  },
+  {
+    "question": "Which parts of the RCPB leakage detection system need modification for application to microreactors?",
+    "answer": "The detection of coolant leakage (changing to gas leakage), heat transfer imbalances, and structural deformation require modifications for application to microreactors."
+  },
+  {
+    "question": "What design criteria are applied to ensure natural disaster preparedness for microreactors?",
+    "answer": "GDC 2 requires that the RCPB leakage detection system must be capable of withstanding natural disasters such as earthquakes, tornadoes, floods, and other extreme events."
+  },
+  {
+    "question": "Which performance indicators should be monitored to detect potential coolant leakage in microreactors?",
+    "answer": "Temperature rise, pressure changes, and heat transfer conditions should be monitored to detect potential coolant leakage."
+  },
+  {
+    "question": "How is the system’s ability to withstand abnormal operating conditions in microreactors evaluated?",
+    "answer": "The system is evaluated against GDC 4 to assess its ability to withstand abnormal operating conditions such as thermal changes, shocks, and vibrations."
+  },
+  {
+    "question": "What are the approval criteria for reactor systems related to RCPB leakage detection?",
+    "answer": "The approval criteria (ITTAC) include performance testing of heat transfer and cooling systems, as well as functional testing of emergency shutdown systems."
+  }
+  ,
+  {
+    "question": "How should radiation monitoring be integrated into microreactors?",
+    "answer": "Radiation monitoring should follow regulations related to radiation surveillance and leakage detection, including emergency measures based on radiation emission levels."
+  }
+  ,
+  {
+    "question": "Which parts of the coolant system are unnecessary for microreactors?",
+    "answer": "The coolant replenishment system, large-scale operation and maintenance requirements, and the connection points and piping systems within the coolant system are unnecessary for microreactors."
+  }
+]

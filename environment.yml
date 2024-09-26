@@ -11,4 +11,10 @@ dependencies:
   - networkx
   - matplotlib
   - spacy
+<<<<<<< HEAD
   - pyyaml
+=======
+  - pyyaml
+post-build:
+  - python -m spacy download en_core_web_sm
+>>>>>>> 468dd4f (update web)

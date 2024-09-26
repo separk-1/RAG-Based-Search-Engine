@@ -1,0 +1,24 @@
+name: rag
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - PyPDF2
+  - pdfplumber
+  - nltk
+  - scikit-learn
+  - networkx
+  - matplotlib
+  - spacy
+  - pyyaml
+  - pip 
+  - pip:
+      - faiss-cpu  # faiss-gpu
+      - langchain
+      - langchain-openai
+      - rank-bm25
+      - pymupdf
+      - deepeval
+post-build:
+  - python -m spacy download en_core_web_sm

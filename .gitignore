@@ -1,2 +1,4 @@
-#!data/
-#!results/
+/web/bin/
+/web/uploads/
+/web/__pycache__/
+.env
