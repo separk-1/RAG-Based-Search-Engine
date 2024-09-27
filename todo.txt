@@ -1,5 +1,4 @@
 1. spinner
-2. web- reference
 2. visualization with ./run ; interactive plot
 3. design web (frequent q., ask wnter)
 4. performance up <- 

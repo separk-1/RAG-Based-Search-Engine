@@ -1,0 +1,95 @@
+/* 페이지 전체 레이아웃 */
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    justify-content: center;
+}
+
+/* 검색창 컨테이너를 중앙에 정렬 */
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* 검색창 스타일 */
+.search-box {
+    width: 700px;
+    padding: 15px;
+    font-size: 18px;
+    border-radius: 50px;
+    border: 1px solid #dfe1e5;
+    box-shadow: 0px 1px 6px rgba(32, 33, 36, 0.28);
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+/* 검색창이 포커스될 때 스타일 */
+.search-box:focus {
+    box-shadow: 0px 1px 8px rgba(32, 33, 36, 0.4);
+}
+
+/* 로딩 애니메이션 */
+.search-box.loading {
+    border-color: transparent;
+    animation: spin-border 2s linear infinite;
+}
+
+@keyframes spin-border {
+    0% {
+        box-shadow: 0 0 5px 5px rgba(66, 133, 244, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 10px 10px rgba(66, 133, 244, 0.7);
+    }
+    100% {
+        box-shadow: 0 0 5px 5px rgba(66, 133, 244, 0.5);
+    }
+}
+
+/* 좌우에 있는 span */
+.side-span {
+    font-size: 24px;
+    color: #666;
+    padding: 0 10px;
+}
+
+/* 답변 텍스트 스타일 */
+.answer-text {
+    font-size: 18px;  /* 글씨 크기 줄이기 */
+    line-height: 1.5; /* 줄간격 설정 */
+    text-align: left;  /* 왼쪽 정렬 */
+    margin: 20px 40px; /* 좌우 여백 설정 */
+    color: #333;
+}
+
+/* 흐리고 작은 레퍼런스 */
+.faded-references {
+    font-size: 14px;
+    color: #888;
+    list-style-type: none;
+    padding: 0;
+    text-align: left;
+    margin: 10px 40px;  /* 좌우 여백 설정 */
+}
+
+.faded-references li {
+    margin-top: 5px;
+    color: #666;
+}
+
+/* 레퍼런스 제목 */
+#references-title {
+    font-weight: bold;
+    margin-top: 20px;
+    display: none; /* 기본적으로 숨김 */
+    font-size: 16px;
+    text-align: left;
+    margin-left: 40px; /* 왼쪽 여백 */
+}

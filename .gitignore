@@ -2,3 +2,6 @@
 /web/uploads/
 /web/__pycache__/
 .env
+/web_simple/bin/
+/web_simple/uploads/
+/web_simple/__pycache__/
