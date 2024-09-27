@@ -1,4 +1,14 @@
 1. spinner
+2. web- reference
 2. visualization with ./run ; interactive plot
 3. design web (frequent q., ask wnter)
 4. performance up <- 
+
+
+현재 구조:
+input -> visualization
+input -> rag 
+
+별개로 되어 있음
+
+rag를 graph rag로 바꿔서 응답 생성하고, graph도 생성

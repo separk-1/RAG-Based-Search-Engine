@@ -115,7 +115,7 @@ def ask_question():
     # context에서 출처 문장을 추출하여 references 리스트를 만듦
     references = [sentence.strip() for sentence in context]  # context에서 문장을 추출
     
-    print("references:", references)
+    print("references", references)
 
     return jsonify({'answer': result['answer'], 'context': result['context'], 'references': references}), 200
 
