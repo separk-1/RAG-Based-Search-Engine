@@ -42,7 +42,7 @@ from functions.functions_vis import (
 app = Flask(__name__)
 
 # 파일 업로드를 위한 설정
-UPLOAD_FOLDER = './uploads'
+UPLOAD_FOLDER = './database'
 ALLOWED_EXTENSIONS = {'pdf', 'txt'}
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER

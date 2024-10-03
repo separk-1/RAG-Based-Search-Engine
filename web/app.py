@@ -41,18 +41,15 @@ from functions.functions_vis import (
 
 app = Flask(__name__)
 
-# 파일 업로드를 위한 설정
 UPLOAD_FOLDER = './uploads'
 ALLOWED_EXTENSIONS = {'pdf', 'txt'}
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-# Load environment variables from a .env file
 load_dotenv()
 
 openai_api_key = os.getenv("OPENAI_API_KEY")
 
-# Set the OpenAI API key manually as a backup (optional)
 os.environ["OPENAI_API_KEY"] = openai_api_key
 nlp = spacy.load("en_core_web_sm")
 

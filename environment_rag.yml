@@ -12,11 +12,18 @@ dependencies:
   - matplotlib
   - spacy
   - pyyaml
+  - flask
+  - python-dotenv
+  - plotly
+  - spacy
+  - pypdf
+  - -c pytorch faiss-cpu
   - pip 
   - pip:
       - faiss-cpu  # faiss-gpu
       - langchain
       - langchain-openai
+      - langchain_community
       - rank-bm25
       - pymupdf
       - deepeval
