@@ -61,18 +61,8 @@ def text_wrap(text, width=120):
 
 def encode_pdf(path, chunk_size=1000, chunk_overlap=200):
     """
-    Encodes a PDF book into a vector store using OpenAI embeddings.
-
-    Args:
-        path: The path to the PDF file.
-        chunk_size: The desired size of each text chunk.
-        chunk_overlap: The amount of overlap between consecutive chunks.
-
-    Returns:
-        A FAISS vector store containing the encoded book content.
+    Encodes a PDF into a vector store using OpenAI embeddings.
     """
-
-    # Load PDF documents
     loader = PyPDFLoader(path)
     documents = loader.load()
 
@@ -83,12 +73,29 @@ def encode_pdf(path, chunk_size=1000, chunk_overlap=200):
     texts = text_splitter.split_documents(documents)
     cleaned_texts = replace_t_with_space(texts)
 
-    # Create embeddings and vector store
+    # Generate embeddings and vector store
     embeddings = OpenAIEmbeddings()
     vectorstore = FAISS.from_documents(cleaned_texts, embeddings)
 
     return vectorstore
 
+def retrieve_context_per_question(question, chunks_query_retriever):
+    """
+    Retrieve relevant context using the updated invoke method.
+    """
+    docs = chunks_query_retriever.invoke({"query": question})
+    context = [doc.page_content for doc in docs]
+    return context
+
+# Ensure proper async backoff for any rate-limit errors
+async def retry_with_exponential_backoff(coroutine, max_retries=5):
+    for attempt in range(max_retries):
+        try:
+            return await coroutine
+        except RateLimitError as e:
+            if attempt == max_retries - 1:
+                raise e
+            await exponential_backoff(attempt)
 
 def encode_from_string(content, chunk_size=1000, chunk_overlap=200):
     """

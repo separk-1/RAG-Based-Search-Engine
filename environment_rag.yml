@@ -17,6 +17,7 @@ dependencies:
   - plotly
   - spacy
   - pypdf
+  - beautifulsoup4
   - -c pytorch faiss-cpu
   - pip 
   - pip:
