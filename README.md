@@ -44,8 +44,8 @@ We collect nuclear safety regulation datasets from the NRC website.
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-repository/RAG-Search-Engine.git
-cd RAG-Search-Engine
+git clone https://github.com/separk-1/Inferring-Cause-of-Reactor-Overheat-Issues-Using-NLP.git
+cd Inferring-Cause-of-Reactor-Overheat-Issues-Using-NLP
 ```
 
 ### 2. Install the Required Packages
@@ -76,7 +76,16 @@ After downloading, run the script to verify the integrity of the dataset:
 python check_dataset.py
 ```
 
-### 6. Run the Search Engine
+### 6. Set OPENAI_API_KEY
+Make sure to store your OpenAI API key in the `.env` file.
+
+Create or update the `.env` file in the root directory with the following content:
+
+```bash
+OPENAI_API_KEY='your_openai_api_key'
+```
+
+### 7. Run the Search Engine
 Launch the search engine locally:
 
 ```bash

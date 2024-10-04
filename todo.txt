@@ -1,4 +1,4 @@
-readme 
-주석 영어로 (functions_rag)
-retrieve performance
-깃헙 이름 바꾸기(폴더 이름도)
+retrieve performance (refine functions_rag)
+change repository name
+
+frontend loading bar
