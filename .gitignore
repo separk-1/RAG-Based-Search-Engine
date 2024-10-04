@@ -1,6 +1,6 @@
 .env
 /bin/
-/database/
+/database/manual/
 /__pycache__/
-.file_titles.csv
-.failed_downloads.txt
+file_titles.csv
+failed_downloads.txt
