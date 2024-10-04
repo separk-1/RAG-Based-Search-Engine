@@ -1,19 +1,25 @@
 from dotenv import load_dotenv
 import json
+import os
 from typing import List
 
 from deepeval import evaluate
 from deepeval.metrics import GEval, FaithfulnessMetric, ContextualRelevancyMetric
 from deepeval.test_case import LLMTestCase
 
-from langchain.document_loaders import PyPDFLoader
+#from langchain.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings
-from langchain.vectorstores import FAISS
-from langchain_core.pydantic_v1 import BaseModel, Field
+#from langchain.vectorstores import FAISS
+#from langchain_core.pydantic_v1 import BaseModel, Field
+from pydantic import BaseModel, Field
 from langchain import PromptTemplate
-from langchain_openai import ChatOpenAI
+#from langchain_openai import ChatOpenAI
+from langchain_community.chat_models import ChatOpenAI
 from openai import RateLimitError
+from langchain_openai import OpenAI
+from langchain_community.document_loaders import PyPDFLoader
+from langchain_community.vectorstores import FAISS
 
 from rank_bm25 import BM25Okapi
 
@@ -52,38 +58,6 @@ def text_wrap(text, width=120):
         str: The wrapped text.
     """
     return textwrap.fill(text, width=width)
-
-
-def encode_pdf(path, chunk_size=1000, chunk_overlap=200):
-    """
-    Encodes a PDF book into a vector store using OpenAI embeddings.
-
-    Args:
-        path: The path to the PDF file.
-        chunk_size: The desired size of each text chunk.
-        chunk_overlap: The amount of overlap between consecutive chunks.
-
-    Returns:
-        A FAISS vector store containing the encoded book content.
-    """
-
-    # Load PDF documents
-    loader = PyPDFLoader(path)
-    documents = loader.load()
-
-    # Split documents into chunks
-    text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=chunk_size, chunk_overlap=chunk_overlap, length_function=len
-    )
-    texts = text_splitter.split_documents(documents)
-    cleaned_texts = replace_t_with_space(texts)
-
-    # Create embeddings and vector store
-    embeddings = OpenAIEmbeddings()
-    vectorstore = FAISS.from_documents(cleaned_texts, embeddings)
-
-    return vectorstore
-
 
 def encode_from_string(content, chunk_size=1000, chunk_overlap=200):
     """
@@ -134,7 +108,6 @@ def encode_from_string(content, chunk_size=1000, chunk_overlap=200):
 
     return vectorstore
 
-
 def retrieve_context_per_question(question, chunks_query_retriever):
     """
     Retrieves relevant context and unique URLs for a given question using the chunks query retriever.
@@ -143,19 +116,15 @@ def retrieve_context_per_question(question, chunks_query_retriever):
         question: The question for which to retrieve context and URLs.
 
     Returns:
-        A tuple containing:
-        - A string with the concatenated content of relevant documents.
-        - A list of unique URLs from the metadata of the relevant documents.
+        A list of relevant document objects.
     """
 
     # Retrieve relevant documents for the given question
     docs = chunks_query_retriever.get_relevant_documents(question)
 
-    # Concatenate document content
-    # context = " ".join(doc.page_content for doc in docs)
-    context = [doc.page_content for doc in docs]
+    # 문서 객체 자체를 반환
+    return docs
 
-    return context
 
 
 class QuestionAnswerFromContext(BaseModel):
@@ -168,11 +137,12 @@ class QuestionAnswerFromContext(BaseModel):
     answer_based_on_content: str = Field(description="Generates an answer to a query based on a given context.")
 
 
+# create_question_answer_from_context_chain에서 사용된 with_structured_output을 제거
+
+
 def create_question_answer_from_context_chain(llm):
-    # Initialize the ChatOpenAI model with specific parameters
     question_answer_from_context_llm = llm
 
-    # Define the prompt template for chain-of-thought reasoning
     question_answer_prompt_template = """
     For the question below, provide a concise but suffice answer based ONLY on the provided context:
     {context}
@@ -180,15 +150,13 @@ def create_question_answer_from_context_chain(llm):
     {question}
     """
 
-    # Create a PromptTemplate object with the specified template and input variables
     question_answer_from_context_prompt = PromptTemplate(
         template=question_answer_prompt_template,
         input_variables=["context", "question"],
     )
 
-    # Create a chain by combining the prompt template and the language model
-    question_answer_from_context_cot_chain = question_answer_from_context_prompt | question_answer_from_context_llm.with_structured_output(
-        QuestionAnswerFromContext)
+    # with_structured_output 제거
+    question_answer_from_context_cot_chain = question_answer_from_context_prompt | question_answer_from_context_llm
     return question_answer_from_context_cot_chain
 
 
@@ -210,7 +178,9 @@ def answer_question_from_context(question, context, question_answer_from_context
     print("Answering the question from the retrieved context...")
 
     output = question_answer_from_context_chain.invoke(input_data)
-    answer = output.answer_based_on_content
+
+    # 수정: 'answer_based_on_content' 대신 'content' 사용
+    answer = output.content  # AIMessage 객체의 content 속성에서 답변 추출
     return {"answer": answer, "context": context, "question": question}
 
 
@@ -361,15 +331,16 @@ def create_deep_eval_test_cases(
     
 def encode_pdf(path, chunk_size=1000, chunk_overlap=200):
     """
-    Encodes a PDF book into a vector store using OpenAI embeddings.
+    Encodes a PDF into a vector store using OpenAI embeddings and returns both
+    the vector store and the documents with metadata.
 
     Args:
-        path: The path to the PDF file.
+        path: The full path to the PDF file.
         chunk_size: The desired size of each text chunk.
         chunk_overlap: The amount of overlap between consecutive chunks.
 
     Returns:
-        A FAISS vector store containing the encoded book content.
+        A FAISS vector store containing the encoded content.
     """
 
     # Load PDF documents
@@ -381,10 +352,18 @@ def encode_pdf(path, chunk_size=1000, chunk_overlap=200):
         chunk_size=chunk_size, chunk_overlap=chunk_overlap, length_function=len
     )
     texts = text_splitter.split_documents(documents)
+    
+    # 각 chunk에 PDF 파일 전체 경로를 메타데이터로 추가
+    for text in texts:
+        if not hasattr(text, 'metadata'):
+            text.metadata = {}
+        text.metadata['source'] = path  # 파일 경로 전체를 메타데이터에 저장
+
     cleaned_texts = replace_t_with_space(texts)
 
-    # Create embeddings and vector store
+    # Generate embeddings and vector store
     embeddings = OpenAIEmbeddings()
     vectorstore = FAISS.from_documents(cleaned_texts, embeddings)
 
     return vectorstore
+

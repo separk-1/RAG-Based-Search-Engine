@@ -2,11 +2,8 @@ import os
 from flask import Flask, request, render_template, jsonify
 from flask_cors import CORS
 from dotenv import load_dotenv
-from langchain_openai import OpenAI
-from langchain_community.document_loaders import PyPDFLoader
 from langchain_community.vectorstores import FAISS
 from langchain_community.chat_models import ChatOpenAI
-import pdfplumber
 import spacy
 from tqdm import tqdm
 from functions.functions_rag import (
@@ -14,6 +11,11 @@ from functions.functions_rag import (
     retrieve_context_per_question,
     answer_question_from_context,
     create_question_answer_from_context_chain
+)
+
+from functions.functions_utils import (
+    find_all_pdfs,
+    load_file_titles
 )
 
 app = Flask(__name__)
@@ -32,33 +34,9 @@ os.environ["OPENAI_API_KEY"] = openai_api_key
 
 nlp = spacy.load("en_core_web_sm")
 
-# File validation
-def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
-# Extract text from a PDF
-def extract_text_from_pdf(pdf_path):
-    with pdfplumber.open(pdf_path) as pdf:
-        text = ""
-        for page in pdf.pages:
-            text += page.extract_text()
-    return text
-
-# Find all PDFs in the folder
-def find_all_pdfs(root_folder):
-    pdf_files = []
-    for dirpath, _, filenames in os.walk(root_folder):
-        for file in filenames:
-            if allowed_file(file):
-                full_path = os.path.join(dirpath, file)
-                pdf_files.append(full_path)
-    return pdf_files
-
 @app.route('/')
 def home():
     return render_template('index.html')
-
-from tqdm import tqdm
 
 @app.route('/ask', methods=['POST'])
 def ask_question():
@@ -67,6 +45,9 @@ def ask_question():
 
     if not question:
         return jsonify({'error': 'Missing question'}), 400
+
+    # Load file paths and titles from the CSV file
+    file_titles = load_file_titles('./file_titles.csv')
 
     # Get all PDF files in the directory
     pdf_files = find_all_pdfs(app.config['UPLOAD_FOLDER'])
@@ -79,29 +60,35 @@ def ask_question():
 
     # Progress bar to show file processing
     for pdf_file in tqdm(pdf_files, desc="Processing PDFs"):
-        chunks_vector_store = encode_pdf(pdf_file, chunk_size=1000, chunk_overlap=200)
+        vectorstore = encode_pdf(pdf_file, chunk_size=1000, chunk_overlap=200)
 
         if combined_chunks_vector_store is None:
-            combined_chunks_vector_store = chunks_vector_store
+            combined_chunks_vector_store = vectorstore
         else:
-            combined_chunks_vector_store.merge_from(chunks_vector_store)
+            combined_chunks_vector_store.merge_from(vectorstore)
 
-    # Retrieve the relevant context
-    chunks_query_retriever = combined_chunks_vector_store.as_retriever(search_kwargs={"k": 2})
-    context = retrieve_context_per_question(question, chunks_query_retriever)
-    print("Retrieved Context: ", context)
+    # Retrieve the relevant context (returning the document object itself)
+    context_docs = retrieve_context_per_question(question, combined_chunks_vector_store.as_retriever(search_kwargs={"k": 2}))
+    print("Retrieved Context: ", context_docs)
 
-    # Append source of related files to references
-    for chunk in context:
-        if isinstance(chunk, dict) and 'metadata' in chunk:
-            if 'source' in chunk['metadata']:
-                references.append(chunk['metadata']['source'])
+    # Append source of related files to references by accessing metadata
+    for doc in context_docs:
+        if hasattr(doc, 'metadata') and 'source' in doc.metadata:
+            file_path = doc.metadata['source']  # Use the full file path
+            normalized_path = os.path.normpath(file_path)  # Normalize the path for matching
+            normalized_path = normalized_path.replace("\\", "/")  # Convert backslashes to slashes (if necessary)
+            
+            # Find file title using the normalized path
+            file_title = file_titles.get(normalized_path, "Unknown Title")
+            references.append({"file_path": normalized_path, "file_title": file_title})
 
-    # Generate an answer using LLM
+    # Remove duplicate file paths and titles
+    references = [dict(t) for t in {tuple(d.items()) for d in references}]
+
+    # Generate an answer using the context
     llm = ChatOpenAI(temperature=0, model_name="gpt-4", max_tokens=2000)
     question_answer_from_context_chain = create_question_answer_from_context_chain(llm)
-    result = answer_question_from_context(question, " ".join(context), question_answer_from_context_chain)
-
+    result = answer_question_from_context(question, " ".join([doc.page_content for doc in context_docs]), question_answer_from_context_chain)
     return jsonify({'answer': result['answer'], 'context': result['context'], 'references': references}), 200
 
 if __name__ == '__main__':

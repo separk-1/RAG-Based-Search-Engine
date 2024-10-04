@@ -4,14 +4,18 @@ from bs4 import BeautifulSoup
 from concurrent.futures import ThreadPoolExecutor
 from tqdm import tqdm  # Progress bar
 import time  # For request delay
+import csv  # Module for saving CSV files
 
 # Define base URL and chapters
 base_url = "https://www.nrc.gov/reading-rm/doc-collections/nuregs/staff/sr0800/ch"
-chapters = {f"Chapter{num}": f"{base_url}{num}/index.html" for num in range(1, 20)}
+chapters = {f"Chapter{num}": f"{base_url}{num}/index.html" for num in range(5, 6)}
 
 # Base URL for downloads
 base_download_url = "https://www.nrc.gov"
 failed_downloads = []  # To track failed downloads
+
+# Dictionary to map file paths and titles
+file_titles = {}
 
 # Function to download the PDF
 def download_pdf(pdf_name, link, root_dir):
@@ -53,6 +57,7 @@ def process_chapter(chapter_name, chapter_url, progress_bar):
             cells = row.find_all('td')
             if len(cells) > 2:  # Ensure there are at least 3 cells (for index 2 to be valid)
                 section = cells[0].text.strip().replace('.', '_').replace(' ', '_').replace('-', '_')
+                title = cells[1].text.strip()  # Extract the file title
                 rev_link = cells[2].find('a')
                 if rev_link:
                     pdf_url = base_download_url + rev_link['href']
@@ -60,10 +65,27 @@ def process_chapter(chapter_name, chapter_url, progress_bar):
                     download_pdf(pdf_name, pdf_url, root_dir)
                     progress_bar.update(1)  # Update the progress bar
 
+                    # Save the path and title in the dictionary
+                    file_path = os.path.join(root_dir, pdf_name)
+
+                    # Normalize the path and replace backslashes with slashes
+                    normalized_path = os.path.normpath(file_path).replace("\\", "/")
+                    file_titles[normalized_path] = title
+
                     # Add a delay between requests to avoid overloading the server
-                    #time.sleep(1)
+                    time.sleep(1)
     except requests.exceptions.RequestException as e:
         print(f"Failed to process {chapter_name}: {e}")
+
+# Function to save file titles to CSV
+def save_titles_to_csv():
+    csv_file_path = "file_titles.csv"
+    with open(csv_file_path, mode="w", newline="") as csv_file:
+        writer = csv.writer(csv_file)
+        writer.writerow(["File Path", "File Title"])  # Write the CSV header
+        for file_path, title in file_titles.items():
+            writer.writerow([file_path, title])  # Save each file path and title to the CSV
+    print(f"File titles saved to {csv_file_path}")
 
 # Process chapters in parallel with a progress bar
 def process_all_chapters():
@@ -80,5 +102,8 @@ def process_all_chapters():
             for item in failed_downloads:
                 f.write(f"{item}\n")
         print("Failed downloads recorded in failed_downloads.txt")
+
+    # Save the file path to title dictionary to a CSV file
+    save_titles_to_csv()
 
 process_all_chapters()

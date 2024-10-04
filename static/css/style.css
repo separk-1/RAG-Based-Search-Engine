@@ -1,4 +1,4 @@
-/* 페이지 전체 레이아웃 */
+/* Full page layout */
 body, html {
     height: 100%;
     margin: 0;
@@ -10,7 +10,7 @@ body, html {
     justify-content: center;
 }
 
-/* 검색창 컨테이너를 중앙에 정렬 */
+/* Center align the search box container */
 .search-container {
     display: flex;
     justify-content: center;
@@ -18,7 +18,7 @@ body, html {
     margin-bottom: 20px;
 }
 
-/* 검색창 스타일 */
+/* Search box styling */
 .search-box {
     width: 700px;
     padding: 15px;
@@ -30,12 +30,12 @@ body, html {
     transition: all 0.2s ease;
 }
 
-/* 검색창이 포커스될 때 스타일 */
+/* Styling when the search box is focused */
 .search-box:focus {
     box-shadow: 0px 1px 8px rgba(32, 33, 36, 0.4);
 }
 
-/* 로딩 애니메이션 */
+/* Loading animation */
 .search-box.loading {
     border-color: transparent;
     animation: spin-border 2s linear infinite;
@@ -53,30 +53,30 @@ body, html {
     }
 }
 
-/* 좌우에 있는 span */
+/* Span elements on the sides */
 .side-span {
     font-size: 24px;
     color: #666;
     padding: 0 10px;
 }
 
-/* 답변 텍스트 스타일 */
+/* Answer text styling */
 .answer-text {
-    font-size: 18px;  /* 글씨 크기 줄이기 */
-    line-height: 1.5; /* 줄간격 설정 */
-    text-align: left;  /* 왼쪽 정렬 */
-    margin: 20px 40px; /* 좌우 여백 설정 */
+    font-size: 18px;  /* Reduce font size */
+    line-height: 1.5; /* Set line spacing */
+    text-align: left;  /* Left-align text */
+    margin: 20px 40px; /* Set left and right margin */
     color: #333;
 }
 
-/* 흐리고 작은 레퍼런스 */
+/* Faded and smaller reference list */
 .faded-references {
     font-size: 14px;
     color: #888;
     list-style-type: none;
     padding: 0;
     text-align: left;
-    margin: 10px 40px;  /* 좌우 여백 설정 */
+    margin: 10px 40px;  /* Set left and right margin */
 }
 
 .faded-references li {
@@ -84,12 +84,12 @@ body, html {
     color: #666;
 }
 
-/* 레퍼런스 제목 */
+/* Reference title */
 #references-title {
     font-weight: bold;
     margin-top: 20px;
-    display: none; /* 기본적으로 숨김 */
+    display: none; /* Hidden by default */
     font-size: 16px;
     text-align: left;
-    margin-left: 40px; /* 왼쪽 여백 */
+    margin-left: 40px; /* Left margin */
 }
