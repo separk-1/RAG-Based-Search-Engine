@@ -1,4 +1,2 @@
 retrieve performance (refine functions_rag)
 change repository name
-
-frontend loading bar

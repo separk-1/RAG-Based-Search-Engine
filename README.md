@@ -47,6 +47,7 @@ We collect nuclear safety regulation datasets from the NRC website.
 git clone https://github.com/separk-1/Inferring-Cause-of-Reactor-Overheat-Issues-Using-NLP.git
 cd Inferring-Cause-of-Reactor-Overheat-Issues-Using-NLP
 ```
+(I will change my repository name to RAG-Based Search Engine after the part 2 report is graded.)
 
 ### 2. Install the Required Packages
 Make sure you have Python 3.10 and the required libraries installed. Install dependencies using:
@@ -76,7 +77,7 @@ After downloading, run the script to verify the integrity of the dataset:
 python check_dataset.py
 ```
 
-### 6. Set OPENAI_API_KEY
+### 6. Configure Your OpenAI API Key
 Make sure to store your OpenAI API key in the `.env` file.
 
 Create or update the `.env` file in the root directory with the following content:
