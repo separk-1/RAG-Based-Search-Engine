@@ -1,50 +1,81 @@
-# I'll create the README.md file for you with the provided structure and save it.
 
-readme_content = """
-# 🔍 RAG-Based Search Engine
+# 🔍 RAG-based Search Engine Project
 
-This project is a **RAG (Retrieval-Augmented Generation)**-powered search engine designed to provide precise answers and references from regulatory documents related to nuclear safety. The system crawls safety datasets, processes them, and builds a search interface where users can input questions and receive relevant responses with cited references.
+This project is a search engine that utilizes Retrieval-Augmented Generation (RAG) to search through a dataset of nuclear safety regulations.
 
----
+## 📋 Table of Contents
 
-## 📦 Project Structure
-
-### 0. **Requirements**
-Ensure that the required packages and dependencies are installed by referencing the `requirements.txt` file.
-
-### 1. **Dataset Collection** 🗂️
-
-We collect nuclear safety regulation datasets from the NRC website.
-
-- **`get_dataset.py`**:  
-   This script crawls the NRC website for regulatory documents and stores them in the `./database/manual` directory. Any failed downloads are logged in `failed_downloads.txt`. Additionally, it saves the file path and corresponding file title in `file_title.csv`.
-  
-- **`check_dataset.py`**:  
-   This script checks the `./database` folder for any corrupted or missing files and ensures that the dataset is intact.
-
-### 2. **Run Search Engine** 🔍
-
-- **`app.py`**:  
-   This script runs the web application. When launched, it starts a local web server where users can input queries. By pressing the Enter key, the system provides an answer along with references to relevant documents.
-
-### 3. **Functions** ⚙️
-
-- **`functions/functions_rag.py`**:  
-   This file stores all functions related to **RAG (Retrieval-Augmented Generation)** processing, including document chunking, encoding, and retrieval.
-
-- **`functions/functions_utils.py`**:  
-   This file stores utility functions such as file loading, dataset handling, and metadata processing.
-
-### 4. **Frontend Design** 🎨
-
-- **`static/`** and **`templates/`**:  
-   These folders contain the HTML, CSS, and other static assets for the web application design. The user interface is clean, minimalistic, and responsive.
+0. **requirements.txt**  
+1. **Dataset Collection** - Scrapes safety regulation datasets from the NRC website.  
+2. **Running the Search Engine** - How to execute the web app and search questions.  
+3. **Functions** - Overview of the main functionalities and utilities.  
+4. **Static and Templates** - Web design files.
 
 ---
 
-## 🛠️ Setup Guide
+## 0. requirements.txt
 
-### 1. Clone the Repository
-```bash
-git clone https://github.com/your-repository/RAG-Search-Engine.git
-cd RAG-Search-Engine
+The project dependencies and required packages are listed in the `requirements.txt` file. This includes necessary Python libraries such as Flask, LangChain, and others for web scraping, RAG, and running the search engine.
+
+---
+
+## 1. Dataset Collection
+
+This module scrapes safety regulation datasets from the NRC website and saves them into the `./database/manual` folder.
+
+### Scripts:
+
+- **get_dataset.py**:  
+  Scrapes the dataset and stores it in `./database/manual`. If any downloads fail, they are logged in `failed_downloads.txt`. The file paths and titles are stored as a dictionary in `file_title.csv`.
+
+- **check_dataset.py**:  
+  Verifies if there are any corrupted files within the `./database` folder.
+
+---
+
+## 2. Running the Search Engine
+
+To launch the search engine, run the `app.py` script. This will start a web server where you can input queries. After hitting enter, the system will retrieve answers along with relevant references.
+
+### Key file:
+
+- **app.py**:  
+  Starts the search engine and provides answers to questions based on the dataset, along with references.
+
+---
+
+## 3. Functions
+
+This section contains two utility modules:
+
+- **functions/functions_rag.py**:  
+  Contains core functions related to RAG-based search processes.
+
+- **functions/functions_utils.py**:  
+  Includes additional utility functions to support the search engine.
+
+---
+
+## 4. Static and Templates
+
+The web design (CSS and HTML templates) is stored in the `static` and `templates` folders.
+
+---
+
+## 📦 How to Set Up
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/yourusername/rag-search-engine.git
+   cd rag-search-engine
+   ```
+
+2. **Install Dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Run the Search Engine**:
+   ```bash
+   python app.py
+   ```
