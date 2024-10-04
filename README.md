@@ -1,81 +1,139 @@
 
-# 🔍 RAG-based Search Engine Project
+# 🔍 RAG-Based Search Engine
 
-This project is a search engine that utilizes Retrieval-Augmented Generation (RAG) to search through a dataset of nuclear safety regulations.
-
-## 📋 Table of Contents
-
-0. **requirements.txt**  
-1. **Dataset Collection** - Scrapes safety regulation datasets from the NRC website.  
-2. **Running the Search Engine** - How to execute the web app and search questions.  
-3. **Functions** - Overview of the main functionalities and utilities.  
-4. **Static and Templates** - Web design files.
+This project is a **RAG (Retrieval-Augmented Generation)**-powered search engine designed to provide precise answers and references from regulatory documents related to nuclear safety. The system crawls safety datasets, processes them, and builds a search interface where users can input questions and receive relevant responses with cited references.
 
 ---
 
-## 0. requirements.txt
+## 📦 Project Structure
 
-The project dependencies and required packages are listed in the `requirements.txt` file. This includes necessary Python libraries such as Flask, LangChain, and others for web scraping, RAG, and running the search engine.
+### 0. **Requirements**
+Ensure that the required packages and dependencies are installed by referencing the `requirements.txt` file.
 
----
+### 1. **Dataset Collection** 🗂️
 
-## 1. Dataset Collection
+We collect nuclear safety regulation datasets from the NRC website.
 
-This module scrapes safety regulation datasets from the NRC website and saves them into the `./database/manual` folder.
+- **`get_dataset.py`**:  
+   This script crawls the NRC website for regulatory documents and stores them in the `./database/manual` directory. Any failed downloads are logged in `failed_downloads.txt`. Additionally, it saves the file path and corresponding file title in `file_title.csv`.
+  
+- **`check_dataset.py`**:  
+   This script checks the `./database` folder for any corrupted or missing files and ensures that the dataset is intact.
 
-### Scripts:
+### 2. **Run Search Engine** 🔍
 
-- **get_dataset.py**:  
-  Scrapes the dataset and stores it in `./database/manual`. If any downloads fail, they are logged in `failed_downloads.txt`. The file paths and titles are stored as a dictionary in `file_title.csv`.
+- **`app.py`**:  
+   This script runs the web application. When launched, it starts a local web server where users can input queries. By pressing the Enter key, the system provides an answer along with references to relevant documents.
 
-- **check_dataset.py**:  
-  Verifies if there are any corrupted files within the `./database` folder.
+### 3. **Functions** ⚙️
 
----
+- **`functions/functions_rag.py`**:  
+   This file stores all functions related to **RAG (Retrieval-Augmented Generation)** processing, including document chunking, encoding, and retrieval.
 
-## 2. Running the Search Engine
+- **`functions/functions_utils.py`**:  
+   This file stores utility functions such as file loading, dataset handling, and metadata processing.
 
-To launch the search engine, run the `app.py` script. This will start a web server where you can input queries. After hitting enter, the system will retrieve answers along with relevant references.
+### 4. **Frontend Design** 🎨
 
-### Key file:
-
-- **app.py**:  
-  Starts the search engine and provides answers to questions based on the dataset, along with references.
-
----
-
-## 3. Functions
-
-This section contains two utility modules:
-
-- **functions/functions_rag.py**:  
-  Contains core functions related to RAG-based search processes.
-
-- **functions/functions_utils.py**:  
-  Includes additional utility functions to support the search engine.
+- **`static/`** and **`templates/`**:  
+   These folders contain the HTML, CSS, and other static assets for the web application design. The user interface is clean, minimalistic, and responsive.
 
 ---
 
-## 4. Static and Templates
+## 🛠️ Setup Guide
 
-The web design (CSS and HTML templates) is stored in the `static` and `templates` folders.
+### 1. Clone the Repository
+```bash
+git clone https://github.com/your-repository/RAG-Search-Engine.git
+cd RAG-Search-Engine
+```
+
+### 2. Install the Required Packages
+Make sure you have Python 3.10 and the required libraries installed. Install dependencies using:
+
+```bash
+conda env create -f requirements.txt
+```
+
+### 3. Download Spacy Language Model
+To ensure proper NLP operations, download the Spacy language model:
+
+```bash
+python -m spacy download en_core_web_sm
+```
+
+### 4. Run Dataset Collection
+To crawl and store the dataset from the NRC website:
+
+```bash
+python get_dataset.py
+```
+
+### 5. Check the Dataset
+After downloading, run the script to verify the integrity of the dataset:
+
+```bash
+python check_dataset.py
+```
+
+### 6. Run the Search Engine
+Launch the search engine locally:
+
+```bash
+python app.py
+```
+
+Open a browser and navigate to `http://127.0.0.1:5001` to access the web interface, ask questions, and view the generated answers with references.
 
 ---
 
-## 📦 How to Set Up
+## 🗂️ Example File Structure
+```
+RAG-Search-Engine/
+│
+├── database/
+│   └── manual/
+│       ├── NUREG0800_Chapter5/  # Crawled dataset
+│       └── ...
+├── static/                      # Frontend assets (CSS, etc.)
+├── templates/                   # HTML files for the web app
+├── functions/
+│   ├── functions_rag.py         # RAG-related functions
+│   └── functions_utils.py       # Utility functions
+├── get_dataset.py               # Script to crawl and download the dataset
+├── check_dataset.py             # Script to verify the dataset integrity
+├── app.py                       # Main web application script
+└── requirements.txt             # List of required dependencies
+```
 
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/yourusername/rag-search-engine.git
-   cd rag-search-engine
-   ```
+---
 
-2. **Install Dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
+## 🎯 Key Components
 
-3. **Run the Search Engine**:
-   ```bash
-   python app.py
-   ```
+### 🔑 Dataset Collection & Preprocessing
+- **Web Crawling**: The system scrapes regulatory documents from the NRC website and stores them in the local database.
+- **Data Integrity Check**: It ensures the downloaded documents are intact.
+
+### 🔑 RAG Search Engine
+- **Document Chunking**: Documents are split into manageable chunks for efficient retrieval.
+- **Question-Answering**: A combination of retrieval (via FAISS) and generative models provides answers to user queries, ensuring both relevance and accuracy.
+
+---
+
+## 🚀 How It Works
+
+- **Document Encoding**: The documents are split into chunks, and embeddings are created using OpenAI embeddings, which are then stored in the FAISS vector store.
+- **User Query**: The user enters a query through the web interface.
+- **RAG Processing**: The system retrieves relevant documents based on the query and generates an answer.
+- **References**: The response is accompanied by references to the original documents used to generate the answer.
+
+---
+
+## 📋 Future Enhancements
+- **Expand Dataset**: Integrate more comprehensive datasets beyond NRC regulations.
+- **Refine Search Algorithm**: Improve retrieval and generation accuracy by experimenting with more advanced vector models.
+- **User Feedback**: Implement feedback loops for users to rate the relevance of the results.
+
+---
+
+This project demonstrates how RAG can be used to build powerful question-answering systems based on unstructured text data. By leveraging NRC regulatory documents, this system provides accurate and detailed answers, making it a valuable tool for understanding nuclear safety regulations.
