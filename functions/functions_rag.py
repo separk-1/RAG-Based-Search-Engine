@@ -1,23 +1,12 @@
 from dotenv import load_dotenv
-import json
-import os
 from typing import List
-
-from deepeval import evaluate
-from deepeval.metrics import GEval, FaithfulnessMetric, ContextualRelevancyMetric
 from deepeval.test_case import LLMTestCase
 
-#from langchain.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings
-#from langchain.vectorstores import FAISS
-#from langchain_core.pydantic_v1 import BaseModel, Field
 from pydantic import BaseModel, Field
 from langchain import PromptTemplate
-#from langchain_openai import ChatOpenAI
-from langchain_community.chat_models import ChatOpenAI
 from openai import RateLimitError
-from langchain_openai import OpenAI
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_community.vectorstores import FAISS
 
