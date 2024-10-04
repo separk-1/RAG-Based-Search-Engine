@@ -44,10 +44,9 @@ We collect nuclear safety regulation datasets from the NRC website.
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/separk-1/Inferring-Cause-of-Reactor-Overheat-Issues-Using-NLP.git
-cd Inferring-Cause-of-Reactor-Overheat-Issues-Using-NLP
+git clone https://github.com/separk-1/RAG-Based-Search-Engine.git
+cd RAG-Based-Search-Engine
 ```
-(I will change my repository name to 'RAG-Based Search Engine' after the part 2 report is graded.)
 
 ### 2. Install the Required Packages
 Make sure you have Python 3.10 and the required libraries installed. Install dependencies using:
