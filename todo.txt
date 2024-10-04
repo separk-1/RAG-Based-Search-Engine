@@ -1,2 +1,8 @@
+add retrieved_info after reference
 retrieve performance (refine functions_rag)
 change repository name
+
+
+example questions
+1. What is reactor core isolation?
+2. Can you tell me the name of the regulations related to overpressure?

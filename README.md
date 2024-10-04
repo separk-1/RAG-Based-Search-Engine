@@ -138,6 +138,11 @@ RAG-Search-Engine/
 - **References**: The response is accompanied by references to the original documents used to generate the answer.
 
 ---
+## 🎥 Example Usage
+
+![Example GIF](./assets/example_usage.gif)
+
+---
 
 ## 📋 Future Enhancements
 - **Expand Dataset**: Integrate more comprehensive datasets beyond NRC regulations.

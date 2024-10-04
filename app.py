@@ -69,7 +69,7 @@ def ask_question():
 
     # Retrieve the relevant context (returning the document object itself)
     context_docs = retrieve_context_per_question(question, combined_chunks_vector_store.as_retriever(search_kwargs={"k": 2}))
-    print("Retrieved Context: ", context_docs)
+    #print("Retrieved Context: ", context_docs)
 
     # Append source of related files to references by accessing metadata
     for doc in context_docs:
